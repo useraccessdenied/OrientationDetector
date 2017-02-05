@@ -63,33 +63,32 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtZ"
             android:layout_weight="1" />
+
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal">
+        android:gravity="center_horizontal" >
 
-        <TextView
+        <Button
+            android:text="Set this as  Flat Surface"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView12"
-            android:layout_weight="1" />
+            android:id="@+id/setFlatSurface"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="setFlatSurface"/>
 
         <TextView
-            android:layout_width="100dp"
             android:id="@+id/status"
-            android:layout_weight="1"
             android:gravity="center_vertical|center_horizontal"
-            android:layout_height="50dp" />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="150dp"
+            android:layout_height="80dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView13"
-            android:layout_weight="1" />
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

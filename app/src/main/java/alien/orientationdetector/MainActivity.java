@@ -7,12 +7,15 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener{
     private SensorManager sensorManager;
     private Sensor gravitySensor;
     private TextView X,Y,Z,status;
+    private double x, y, z;
+    private double xoffset = 0, yoffset = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +49,12 @@ public class MainActivity extends Activity implements SensorEventListener{
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(event.sensor.getType() == Sensor.TYPE_GRAVITY){
-            double x = event.values[0];
-            double y = event.values[1];
-            double z = event.values[2];
+            x = event.values[0];
+            y = event.values[1];
+            z = event.values[2];
+
+            x -= xoffset;
+            y -= yoffset;
 
             x = Math.round(x * 100.0)/100.0;
             y = Math.round(y * 100.0)/100.0;
@@ -66,5 +72,10 @@ public class MainActivity extends Activity implements SensorEventListener{
                 status.setBackgroundColor(0xfff44336);
             }
         }
+    }
+
+    public void setFlatSurface(View v){
+        xoffset = x;
+        yoffset = y;
     }
 }
