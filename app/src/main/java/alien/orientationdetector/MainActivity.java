@@ -15,7 +15,7 @@ public class MainActivity extends Activity implements SensorEventListener{
     private Sensor gravitySensor;
     private TextView X,Y,Z,status;
     private double x, y, z;
-    private double xoffset = 0, yoffset = 0;
+    private double threshold =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,6 @@ public class MainActivity extends Activity implements SensorEventListener{
             y = event.values[1];
             z = event.values[2];
 
-            x -= xoffset;
-            y -= yoffset;
-
             x = Math.round(x * 100.0)/100.0;
             y = Math.round(y * 100.0)/100.0;
             z = Math.round(z * 100.0)/100.0;
@@ -64,7 +61,7 @@ public class MainActivity extends Activity implements SensorEventListener{
             Y.setText(y + "");
             Z.setText(z + "");
 
-            if(y < 0.2 && y > -0.2 && x < 0.2 && x > -0.2){
+            if(threshold - z < 0.05 && threshold - z > -0.05){
                 status.setText("Flat Surface");
                 status.setBackgroundColor(0xff8bc34a);
             }else{
@@ -75,7 +72,6 @@ public class MainActivity extends Activity implements SensorEventListener{
     }
 
     public void setFlatSurface(View v){
-        xoffset = x;
-        yoffset = y;
+        threshold = z;
     }
 }
