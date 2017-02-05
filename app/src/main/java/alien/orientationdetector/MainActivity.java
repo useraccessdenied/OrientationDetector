@@ -46,9 +46,13 @@ public class MainActivity extends Activity implements SensorEventListener{
     @Override
     public void onSensorChanged(SensorEvent event) {
         if(event.sensor.getType() == Sensor.TYPE_GRAVITY){
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+            double x = event.values[0];
+            double y = event.values[1];
+            double z = event.values[2];
+
+            x = Math.round(x * 100.0)/100.0;
+            y = Math.round(y * 100.0)/100.0;
+            z = Math.round(z * 100.0)/100.0;
 
             X.setText(x + "");
             Y.setText(y + "");
